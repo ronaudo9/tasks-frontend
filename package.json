@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@apollo/client": "^3.10.1",
+    "@apollo/experimental-nextjs-app-support": "^0.10.0",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "graphql": "^16.8.1",
