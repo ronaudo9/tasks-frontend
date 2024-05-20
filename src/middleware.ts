@@ -6,6 +6,7 @@ export function middleware(request: NextRequest) {
   const token = (request.cookies as any).token;
   if (token) {
     const decodedToken = jwtDecode<Payload>(token);
+    console.log(" decodedToken", decodedToken);
     if (decodedToken.exp * 1000 > Date.now()) {
       return null;
     }
@@ -13,7 +14,7 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/signin") {
     return null;
   }
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "http://localhost:3001";
   return NextResponse.redirect(`${baseUrl}/signin`);
 }
 
