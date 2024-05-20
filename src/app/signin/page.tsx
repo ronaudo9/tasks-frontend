@@ -1,30 +1,14 @@
 "use client";
 import LockOpenSharpIcon from "@mui/icons-material/LockOpenSharp";
 import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { signInSchema } from "../Utils/validationSchema";
+import { useHooks } from "./useHooks";
 
-type Login = {
-  email: string;
-  password: string;
-};
 export default function Page() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Login>({
-    mode: "onChange",
-    resolver: zodResolver(signInSchema),
-  });
-  const onSubmit = (data: Login) => {
-    console.log(data);
-  };
+  const { register, errors, onSubmit } = useHooks();
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
       className="mx-auto mt-32 flex w-3/5 flex-col items-center justify-center"
     >
       <div className="mb-3 rounded-full bg-purple-500 p-2">
@@ -33,7 +17,7 @@ export default function Page() {
       <div className="mb-7 text-3xl">Sign&nbsp;in</div>
       <div className="mb-7 w-full md:w-1/2">
         <input
-          type="text"
+          type="email"
           className="h-12 w-full rounded border p-2"
           placeholder="Email Address*"
           id="email"
@@ -43,7 +27,7 @@ export default function Page() {
       </div>
       <div className="mb-4 w-full md:w-1/2">
         <input
-          type="text"
+          type="password"
           className="h-12 w-full rounded border p-2"
           placeholder="Password*"
           id="password"
